@@ -22,14 +22,14 @@ spec:
         - name: {{ $k }}
           valueFrom:
             secretKeyRef:
-              name: {{ .Chart.Name }}-secrets
+              name: mysql-secrets
               key: {{ $k }}
         {{- end }}
         - name: MYSQL_DATABASE
           value: app_db
         ports:
         - name: {{ .Chart.Name }}
-          containerPort: {{ .Values.mysql.service.clusterIP }}
+          containerPort: {{ .Values.mysql.port }}
         volumeMounts:
         - name: data
           mountPath: /var/lib/mysql
